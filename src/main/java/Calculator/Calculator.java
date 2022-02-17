@@ -4,14 +4,16 @@ public class Calculator {
 
     private String expression;
     private InputHandler inputHandler;
+    private CalculateHandler calculateHandler;
 
-    public Calculator(InputHandler inputHandler) {
+    public Calculator(InputHandler inputHandler, CalculateHandler calculateHandler) {
         this.inputHandler = inputHandler;
+        this.calculateHandler = calculateHandler;
     }
 
     public int calculate() {
         expression = inputHandler.inputData();
-
-        return 0;
+        calculateHandler.splitExpression(expression);
+        return calculateHandler.calculate();
     }
 }
