@@ -9,7 +9,8 @@ public class CalculateHandlerImpl implements CalculateHandler {
     private final ArrayDeque<String> operatorIter = new ArrayDeque<>();
 
     @Override
-    public int calculate() {
+    public int calculate(String expression) {
+        splitExpression(expression);
         for (String operator : operatorIter) {
             int leftNum = numIter.poll();
             int rightNum = numIter.poll();
@@ -24,7 +25,6 @@ public class CalculateHandlerImpl implements CalculateHandler {
         return numIter.poll();
     }
 
-    @Override
     public void splitExpression(String expression) {
         for (String s : expression.split(" ")) {
             if (isDigit(s)) {
