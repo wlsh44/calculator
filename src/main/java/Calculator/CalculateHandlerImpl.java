@@ -10,7 +10,18 @@ public class CalculateHandlerImpl implements CalculateHandler {
 
     @Override
     public int calculate() {
-        return 0;
+        for (String operator : operatorIter) {
+            int leftNum = numIter.poll();
+            int rightNum = numIter.poll();
+
+            switch (operator) {
+                case Operator.PLUS -> numIter.addFirst(leftNum + rightNum);
+                case Operator.MINUS -> numIter.addFirst(leftNum - rightNum);
+                case Operator.MULTIPLY -> numIter.addFirst(leftNum * rightNum);
+                case Operator.DIVIDE -> numIter.addFirst(leftNum / rightNum);
+            }
+        }
+        return numIter.poll();
     }
 
     @Override
