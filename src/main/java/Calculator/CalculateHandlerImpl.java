@@ -1,7 +1,6 @@
 package Calculator;
 
 import java.util.ArrayDeque;
-import java.util.function.Consumer;
 
 public class CalculateHandlerImpl implements CalculateHandler {
 
