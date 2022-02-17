@@ -13,7 +13,6 @@ public class Calculator {
 
     public int calculate() {
         expression = inputHandler.inputData();
-        calculateHandler.splitExpression(expression);
-        return calculateHandler.calculate();
+        return calculateHandler.calculate(expression);
     }
 }
