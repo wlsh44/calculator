@@ -1,5 +1,5 @@
 import Calculator.CalculateHandler;
-import Calculator.CalculateHandlerImpl;
+import Calculator.ArithmeticCalculateHandler;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class SampleTest {
 
-    private final CalculateHandler calculateHandler = new CalculateHandlerImpl();
+    private final CalculateHandler calculateHandler = new ArithmeticCalculateHandler();
 
     @Test
     void sample_test() {

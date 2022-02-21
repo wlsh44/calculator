@@ -2,7 +2,7 @@ package Calculator;
 
 import java.util.ArrayDeque;
 
-public class CalculateHandlerImpl implements CalculateHandler {
+public class ArithmeticCalculateHandler implements CalculateHandler {
 
     private final ArrayDeque<Integer> numIter = new ArrayDeque<>();
     private final ArrayDeque<String> operatorIter = new ArrayDeque<>();
