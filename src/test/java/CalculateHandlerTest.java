@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SampleTest {
+public class CalculateHandlerTest {
 
     private final CalculateHandler calculateHandler = new ArithmeticCalculateHandler();
 
