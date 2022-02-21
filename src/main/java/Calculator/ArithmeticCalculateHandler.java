@@ -15,13 +15,9 @@ public class ArithmeticCalculateHandler implements CalculateHandler {
         for (String operator : operatorIter) {
             int leftNum = numIter.poll();
             int rightNum = numIter.poll();
+            int res = Operator.operate(leftNum, rightNum, operator);
 
-            switch (operator) {
-                case Operator.PLUS -> numIter.addFirst(leftNum + rightNum);
-                case Operator.MINUS -> numIter.addFirst(leftNum - rightNum);
-                case Operator.MULTIPLY -> numIter.addFirst(leftNum * rightNum);
-                case Operator.DIVIDE -> numIter.addFirst(leftNum / rightNum);
-            }
+            numIter.addFirst(res);
         }
         return numIter.poll();
     }
