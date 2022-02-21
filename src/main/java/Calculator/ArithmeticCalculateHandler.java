@@ -1,13 +1,15 @@
 package Calculator;
 
 import java.util.ArrayDeque;
+import java.util.Deque;
 
 import static Calculator.CalculateUtil.isDigit;
+import static Calculator.CalculateUtil.isOperator;
 
 public class ArithmeticCalculateHandler implements CalculateHandler {
 
-    private final ArrayDeque<Integer> numIter = new ArrayDeque<>();
-    private final ArrayDeque<String> operatorIter = new ArrayDeque<>();
+    private Deque<Integer> numIter;
+    private Deque<String> operatorIter;
 
     @Override
     public int calculate(String expression) {
@@ -22,13 +24,32 @@ public class ArithmeticCalculateHandler implements CalculateHandler {
         return numIter.poll();
     }
 
-    public void splitExpression(String expression) {
-        for (String s : expression.split(" ")) {
+    private void splitExpression(String expression) {
+        String[] split = expression.split(" ");
+
+        numIter = extractNumIter(split);
+        operatorIter = extractOperatorIter(split);
+    }
+
+    private Deque<Integer> extractNumIter(String[] split) {
+        Deque<Integer> deque = new ArrayDeque<>();
+
+        for (String s : split) {
             if (isDigit(s)) {
-                numIter.add(Integer.valueOf(s));
-            } else {
-                operatorIter.add(s);
+                deque.add(Integer.parseInt(s));
             }
         }
+        return deque;
+    }
+
+    private Deque<String> extractOperatorIter(String[] split) {
+        Deque<String> deque = new ArrayDeque<>();
+
+        for (String s : split) {
+            if (isOperator(s)) {
+                deque.add(s);
+            }
+        }
+        return deque;
     }
 }

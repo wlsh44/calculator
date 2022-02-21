@@ -1,5 +1,7 @@
 package Calculator;
 
+import static Calculator.Operator.*;
+
 public class CalculateUtil {
 
     public static boolean isDigit(String s) {
@@ -9,5 +11,9 @@ public class CalculateUtil {
             }
         }
         return true;
+    }
+
+    public static boolean isOperator(String s) {
+        return s.equals(PLUS) || s.equals(MINUS) || s.equals(MULTIPLY) || s.equals(DIVIDE);
     }
 }
