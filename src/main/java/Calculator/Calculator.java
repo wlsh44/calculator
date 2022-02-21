@@ -3,16 +3,21 @@ package Calculator;
 public class Calculator {
 
     private String expression;
-    private InputHandler inputHandler;
-    private CalculateHandler calculateHandler;
+    private final InputHandler inputHandler;
+    private final CalculateHandler calculateHandler;
 
     public Calculator(InputHandler inputHandler, CalculateHandler calculateHandler) {
         this.inputHandler = inputHandler;
         this.calculateHandler = calculateHandler;
     }
 
-    public int calculate() {
+    public String inputExpression() {
         expression = inputHandler.inputData();
+        
+        return expression;
+    }
+
+    public int calculate() {
         return calculateHandler.calculate(expression);
     }
 }

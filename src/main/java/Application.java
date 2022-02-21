@@ -6,6 +6,7 @@ public class Application {
         InputHandler inputHandler = new SystemInputHandler();
         Calculator calculator = new Calculator(inputHandler, calculateHandler);
 
+        calculator.inputExpression();
         System.out.println(calculator.calculate());
     }
 }
