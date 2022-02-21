@@ -2,6 +2,8 @@ package Calculator;
 
 import java.util.ArrayDeque;
 
+import static Calculator.CalculateUtil.isDigit;
+
 public class ArithmeticCalculateHandler implements CalculateHandler {
 
     private final ArrayDeque<Integer> numIter = new ArrayDeque<>();
@@ -32,14 +34,5 @@ public class ArithmeticCalculateHandler implements CalculateHandler {
                 operatorIter.add(s);
             }
         }
-    }
-
-    private boolean isDigit(String s) {
-        for (Character c : s.toCharArray()) {
-            if (!('0' <= c && c <= '9')) {
-                return false;
-            }
-        }
-        return true;
     }
 }
