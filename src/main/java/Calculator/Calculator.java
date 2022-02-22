@@ -3,12 +3,15 @@ package Calculator;
 public class Calculator {
 
     private String expression;
+    private int result;
     private final InputHandler inputHandler;
     private final CalculateHandler calculateHandler;
+    private final OutputHandler outputHandler;
 
-    public Calculator(InputHandler inputHandler, CalculateHandler calculateHandler) {
+    public Calculator(InputHandler inputHandler, OutputHandler outputHandler, CalculateHandler calculateHandler) {
         this.inputHandler = inputHandler;
         this.calculateHandler = calculateHandler;
+        this.outputHandler = outputHandler;
     }
 
     public String inputExpression() {
@@ -17,7 +20,13 @@ public class Calculator {
         return expression;
     }
 
+    public void printResult() {
+        outputHandler.printResult(result);
+    }
+
     public int calculate() {
-        return calculateHandler.calculate(expression);
+        result = calculateHandler.calculate(expression);
+
+        return result;
     }
 }
