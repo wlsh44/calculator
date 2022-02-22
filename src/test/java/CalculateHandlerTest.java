@@ -10,12 +10,6 @@ public class CalculateHandlerTest {
     private final CalculateHandler calculateHandler = new ArithmeticCalculateHandler();
 
     @Test
-    void sample_test() {
-        int target = 1 + 2;
-        assertThat(target).isEqualTo(3);
-    }
-
-    @Test
     @DisplayName("1 + 2 * 3 - 4 / 5 = 1")
     void calculate_test1() {
         String expression = "1 + 2 * 3 - 4 / 5";
