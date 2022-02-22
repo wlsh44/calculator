@@ -1,6 +1,6 @@
-package Calculator;
+package Calculator.handler.calculate;
 
-import static Calculator.Operator.*;
+import static Calculator.operator.Operator.*;
 
 public class CalculateUtil {
 

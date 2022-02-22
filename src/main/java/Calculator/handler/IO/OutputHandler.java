@@ -1,4 +1,4 @@
-package Calculator;
+package Calculator.handler.IO;
 
 public interface OutputHandler {
 

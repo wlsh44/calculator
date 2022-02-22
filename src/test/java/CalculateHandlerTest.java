@@ -1,5 +1,5 @@
-import Calculator.CalculateHandler;
-import Calculator.ArithmeticCalculateHandler;
+import Calculator.handler.calculate.CalculateHandler;
+import Calculator.handler.calculate.ArithmeticCalculateHandler;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

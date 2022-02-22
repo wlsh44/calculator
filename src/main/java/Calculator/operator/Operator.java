@@ -1,4 +1,4 @@
-package Calculator;
+package Calculator.operator;
 
 public class Operator {
     public static final String PLUS = "+";
