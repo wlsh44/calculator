@@ -1,5 +1,6 @@
 import Calculator.handler.calculate.CalculateHandler;
 import Calculator.handler.calculate.ArithmeticCalculateHandler;
+import Calculator.handler.calculate.DequeExpressionIterator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -7,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CalculateHandlerTest {
 
-    private final CalculateHandler calculateHandler = new ArithmeticCalculateHandler();
+    private final CalculateHandler calculateHandler = new ArithmeticCalculateHandler(new DequeExpressionIterator());
 
     @Test
     @DisplayName("1 + 2 * 3 - 4 / 5 = 1")
