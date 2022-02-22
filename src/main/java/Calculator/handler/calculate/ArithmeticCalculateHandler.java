@@ -11,15 +11,15 @@ import static Calculator.handler.calculate.CalculateUtil.isOperator;
 public class ArithmeticCalculateHandler implements CalculateHandler {
 
     private Deque<Integer> numIter;
-    private Deque<String> operatorIter;
+    private Deque<Operator> operatorIter;
 
     @Override
     public int calculate(String expression) {
         splitExpression(expression);
-        for (String operator : operatorIter) {
+        for (Operator operator : operatorIter) {
             int leftNum = numIter.poll();
             int rightNum = numIter.poll();
-            int res = Operator.operate(leftNum, rightNum, operator);
+            int res = operator.operate(leftNum, rightNum);
 
             numIter.addFirst(res);
         }
@@ -44,12 +44,12 @@ public class ArithmeticCalculateHandler implements CalculateHandler {
         return deque;
     }
 
-    private Deque<String> extractOperatorIter(String[] split) {
-        Deque<String> deque = new ArrayDeque<>();
+    private Deque<Operator> extractOperatorIter(String[] split) {
+        Deque<Operator> deque = new ArrayDeque<>();
 
         for (String s : split) {
             if (isOperator(s)) {
-                deque.add(s);
+                deque.add(Operator.getOperatorObject(s));
             }
         }
         return deque;
