@@ -2,12 +2,6 @@ package Calculator.handler.calculate;
 
 import Calculator.operator.Operator;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-
-import static Calculator.handler.calculate.CalculateUtil.isDigit;
-import static Calculator.handler.calculate.CalculateUtil.isOperator;
-
 public class ArithmeticCalculateHandler implements CalculateHandler {
 
     private ExpressionIterator iterator;
