@@ -62,7 +62,7 @@ public class DequeExpressionIterator implements ExpressionIterator {
 
         for (String s : split) {
             if (isOperator(s)) {
-                deque.add(Operator.getOperatorObject(s));
+                deque.add(Operator.getEnumByOperator(s));
             }
         }
         return deque;

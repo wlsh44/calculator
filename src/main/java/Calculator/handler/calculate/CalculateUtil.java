@@ -14,6 +14,7 @@ public class CalculateUtil {
     }
 
     public static boolean isOperator(String s) {
-        return s.equals(PLUS) || s.equals(MINUS) || s.equals(MULTIPLY) || s.equals(DIVIDE);
+        return s.equals(PLUS.symbol()) || s.equals(MINUS.symbol()) ||
+                s.equals(MULTIPLY.symbol()) || s.equals(DIVIDE.symbol());
     }
 }
