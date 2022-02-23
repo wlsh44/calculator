@@ -24,8 +24,8 @@ public class Calculator {
         return expression;
     }
 
-    public void printResult() {
-        outputHandler.printResult(result);
+    public String printResult() {
+        return outputHandler.printResult(result);
     }
 
     public int calculate() {
