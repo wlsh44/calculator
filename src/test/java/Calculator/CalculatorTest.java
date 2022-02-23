@@ -1,11 +1,9 @@
 package Calculator;
 
-import Calculator.handler.IO.InputHandler;
 import Calculator.handler.IO.SystemInputHandler;
 import Calculator.handler.IO.SystemOutputHandler;
 import Calculator.handler.calculate.ArithmeticCalculateHandler;
 import Calculator.handler.calculate.DequeExpressionIterator;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -13,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import java.io.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CalculatorTest {
 
@@ -76,7 +73,7 @@ class CalculatorTest {
 
         @Test
         @DisplayName("1 + 2 * 3 - 4 / 5 = 1 결과 출력")
-        void calculateTest1() {
+        void outputTest1() {
             String input = "1 + 2 * 3 - 4 / 5";
             initCalculator(input);
 
@@ -88,8 +85,8 @@ class CalculatorTest {
         }
 
         @Test
-        @DisplayName("2 + 3 * 4 / 2 = 10")
-        void calculateTest2() {
+        @DisplayName("2 + 3 * 4 / 2 = 10 결과 출력")
+        void outputTest2() {
             String input = "2 + 3 * 4 / 2";
             initCalculator(input);
 
@@ -100,10 +97,5 @@ class CalculatorTest {
             assertThat(res).isEqualTo("result = 10");
         }
     }
-
-    @Test
-    void printResult() {
-    }
-
 
 }
