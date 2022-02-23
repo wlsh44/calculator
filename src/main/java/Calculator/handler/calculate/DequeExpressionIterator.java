@@ -4,6 +4,7 @@ import Calculator.operator.Operator;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.stream.Collectors;
 
 import static Calculator.handler.calculate.CalculateUtil.isDigit;
 import static Calculator.handler.calculate.CalculateUtil.isOperator;
@@ -54,11 +55,13 @@ public class DequeExpressionIterator implements ExpressionIterator {
     }
 
     @Override
-    public void splitExpression(String expression) {
+    public String splitExpression(String expression) {
         String[] split = expression.split(" ");
 
         numIter = extractNumIter(split);
         operatorIter = extractOperatorIter(split);
+
+        return numIter.toString() + "\n" + operatorIter.toString();
     }
 
     private Deque<Integer> extractNumIter(String[] split) {

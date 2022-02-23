@@ -8,7 +8,7 @@ public interface ExpressionIterator {
     Operator popOperatorFront();
     void pushNumBack(int num);
     void pushOperatorBack(Operator operator);
-    void splitExpression(String expression);
+    String splitExpression(String expression);
     int numIterSize();
     int operatorIterSize();
 }
