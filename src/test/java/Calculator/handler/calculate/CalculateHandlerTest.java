@@ -1,6 +1,5 @@
-import Calculator.handler.calculate.CalculateHandler;
-import Calculator.handler.calculate.ArithmeticCalculateHandler;
-import Calculator.handler.calculate.DequeExpressionIterator;
+package Calculator.handler.calculate;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
