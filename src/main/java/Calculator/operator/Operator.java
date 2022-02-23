@@ -31,7 +31,7 @@ public enum Operator {
         return this.symbol;
     }
 
-    public static Operator getEnumByOperator(String symbol) {
+    public static Operator of(String symbol) {
         return Operator.valueOf(matcher.get(symbol));
     }
 }

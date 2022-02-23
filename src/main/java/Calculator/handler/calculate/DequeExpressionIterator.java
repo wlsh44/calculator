@@ -4,7 +4,6 @@ import Calculator.operator.Operator;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.stream.Collectors;
 
 import static Calculator.handler.calculate.CalculateUtil.isDigit;
 import static Calculator.handler.calculate.CalculateUtil.isOperator;
@@ -80,7 +79,7 @@ public class DequeExpressionIterator implements ExpressionIterator {
 
         for (String s : split) {
             if (isOperator(s)) {
-                deque.add(Operator.getEnumByOperator(s));
+                deque.add(Operator.of(s));
             }
         }
         return deque;
