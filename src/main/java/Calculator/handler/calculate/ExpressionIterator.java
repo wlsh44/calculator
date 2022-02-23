@@ -9,4 +9,6 @@ public interface ExpressionIterator {
     void pushNumBack(int num);
     void pushOperatorBack(Operator operator);
     void splitExpression(String expression);
+    int numIterSize();
+    int operatorIterSize();
 }

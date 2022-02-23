@@ -13,6 +13,11 @@ public class DequeExpressionIterator implements ExpressionIterator {
     private Deque<Integer> numIter;
     private Deque<Operator> operatorIter;
 
+    public DequeExpressionIterator() {
+        numIter = new ArrayDeque<>();
+        operatorIter = new ArrayDeque<>();
+    }
+
     @Override
     public int popNumFront() {
         return numIter.poll();
@@ -36,6 +41,16 @@ public class DequeExpressionIterator implements ExpressionIterator {
     @Override
     public void pushOperatorBack(Operator operator) {
         operatorIter.addFirst(operator);
+    }
+
+    @Override
+    public int numIterSize() {
+        return numIter.size();
+    }
+
+    @Override
+    public int operatorIterSize() {
+        return operatorIter.size();
     }
 
     @Override
