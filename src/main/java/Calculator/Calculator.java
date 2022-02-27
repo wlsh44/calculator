@@ -1,13 +1,12 @@
 package Calculator;
 
+import Calculator.dto.CalculatorDto;
 import Calculator.handler.IO.InputHandler;
 import Calculator.handler.IO.OutputHandler;
 import Calculator.handler.calculate.CalculateHandler;
 
 public class Calculator {
-
-    private String expression;
-    private int result;
+    
     private final InputHandler inputHandler;
     private final CalculateHandler calculateHandler;
     private final OutputHandler outputHandler;
@@ -18,18 +17,20 @@ public class Calculator {
         this.outputHandler = outputHandler;
     }
 
-    public String inputExpression() {
-        expression = inputHandler.inputData();
+    public CalculatorDto inputExpression() {
+        CalculatorDto dto = new CalculatorDto();
+        dto.setExpression(inputHandler.inputData());
         
-        return expression;
+        return dto;
     }
 
-    public String printResult() {
-        return outputHandler.printResult(result);
+    public String printResult(CalculatorDto dto) {
+        return outputHandler.printResult(dto);
     }
 
-    public int calculate() {
-        result = calculateHandler.calculate(expression);
+    public int calculate(CalculatorDto dto) {
+        int result = calculateHandler.calculate(dto.getExpression());
+        dto.setResult(result);
 
         return result;
     }

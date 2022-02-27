@@ -1,5 +1,6 @@
 package Calculator;
 
+import Calculator.dto.CalculatorDto;
 import Calculator.handler.IO.SystemInputHandler;
 import Calculator.handler.IO.SystemOutputHandler;
 import Calculator.handler.calculate.ArithmeticCalculateHandler;
@@ -32,9 +33,9 @@ class CalculatorTest {
             String input = "1 + 2 - 3 / 4 * 5";
             initCalculator(input);
 
-            String res = calculator.inputExpression();
+            CalculatorDto dto = calculator.inputExpression();
 
-            assertThat(res).isEqualTo("1 + 2 - 3 / 4 * 5");
+            assertThat(dto.getExpression()).isEqualTo("1 + 2 - 3 / 4 * 5");
         }
     }
 
@@ -48,8 +49,8 @@ class CalculatorTest {
             String input = "1 + 2 * 3 - 4 / 5";
             initCalculator(input);
 
-            calculator.inputExpression();
-            int res = calculator.calculate();
+            CalculatorDto dto = calculator.inputExpression();
+            int res = calculator.calculate(dto);
 
             assertThat(res).isEqualTo(1);
         }
@@ -60,8 +61,8 @@ class CalculatorTest {
             String input = "2 + 3 * 4 / 2";
             initCalculator(input);
 
-            calculator.inputExpression();
-            int res = calculator.calculate();
+            CalculatorDto dto = calculator.inputExpression();
+            int res = calculator.calculate(dto);
 
             assertThat(res).isEqualTo(10);
         }
@@ -77,9 +78,9 @@ class CalculatorTest {
             String input = "1 + 2 * 3 - 4 / 5";
             initCalculator(input);
 
-            calculator.inputExpression();
-            calculator.calculate();
-            String res = calculator.printResult();
+            CalculatorDto dto = calculator.inputExpression();
+            calculator.calculate(dto);
+            String res = calculator.printResult(dto);
 
             assertThat(res).isEqualTo("result = 1");
         }
@@ -90,9 +91,9 @@ class CalculatorTest {
             String input = "2 + 3 * 4 / 2";
             initCalculator(input);
 
-            calculator.inputExpression();
-            calculator.calculate();
-            String res = calculator.printResult();
+            CalculatorDto dto = calculator.inputExpression();
+            calculator.calculate(dto);
+            String res = calculator.printResult(dto);
 
             assertThat(res).isEqualTo("result = 10");
         }
