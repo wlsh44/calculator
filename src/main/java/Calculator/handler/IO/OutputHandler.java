@@ -4,5 +4,5 @@ import Calculator.dto.CalculatorDto;
 
 public interface OutputHandler {
 
-    String printResult(CalculatorDto dto);
+    void printResult(CalculatorDto dto);
 }

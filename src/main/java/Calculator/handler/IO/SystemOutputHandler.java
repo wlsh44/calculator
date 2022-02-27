@@ -5,10 +5,9 @@ import Calculator.dto.CalculatorDto;
 public class SystemOutputHandler implements OutputHandler {
 
     @Override
-    public String printResult(CalculatorDto dto) {
+    public void printResult(CalculatorDto dto) {
         String res = dto.getExpression() + " = " + dto.getResult();
 
         System.out.println(res);
-        return res;
     }
 }

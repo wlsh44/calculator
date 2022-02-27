@@ -24,8 +24,8 @@ public class Calculator {
         return dto;
     }
 
-    public String printResult(CalculatorDto dto) {
-        return outputHandler.printResult(dto);
+    public void printResult(CalculatorDto dto) {
+        outputHandler.printResult(dto);
     }
 
     public int calculate(CalculatorDto dto) {

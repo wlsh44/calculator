@@ -8,6 +8,7 @@ import Calculator.handler.IO.SystemOutputHandler;
 import Calculator.handler.calculate.ArithmeticCalculateHandler;
 import Calculator.handler.calculate.CalculateHandler;
 import Calculator.handler.calculate.DequeExpressionIterator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -78,6 +79,13 @@ class CalculatorTest {
     @DisplayName("output 테스트")
     class TestC {
 
+        private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
+        @BeforeEach
+        public void setUp() {
+            System.setOut(new PrintStream(outputStream));
+        }
+
         @Test
         @DisplayName("1 + 2 * 3 - 4 / 5 = 1 결과 출력")
         void outputTest1() {
@@ -86,9 +94,9 @@ class CalculatorTest {
 
             CalculatorDto dto = calculator.inputExpression();
             calculator.calculate(dto);
-            String res = calculator.printResult(dto);
+            calculator.printResult(dto);
 
-            assertThat(res).isEqualTo("1 + 2 * 3 - 4 / 5 = 1");
+            assertThat(outputStream.toString().trim()).isEqualTo("1 + 2 * 3 - 4 / 5 = 1");
         }
 
         @Test
@@ -99,9 +107,9 @@ class CalculatorTest {
 
             CalculatorDto dto = calculator.inputExpression();
             calculator.calculate(dto);
-            String res = calculator.printResult(dto);
+            calculator.printResult(dto);
 
-            assertThat(res).isEqualTo("2 + 3 * 4 / 2 = 10");
+            assertThat(outputStream.toString().trim()).isEqualTo("2 + 3 * 4 / 2 = 10");
         }
     }
 
