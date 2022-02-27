@@ -6,7 +6,7 @@ public class SystemOutputHandler implements OutputHandler {
 
     @Override
     public String printResult(CalculatorDto dto) {
-        String res = "result = " + dto.getResult();
+        String res = dto.getExpression() + " = " + dto.getResult();
 
         System.out.println(res);
         return res;

@@ -6,7 +6,7 @@ import Calculator.handler.IO.OutputHandler;
 import Calculator.handler.calculate.CalculateHandler;
 
 public class Calculator {
-    
+
     private final InputHandler inputHandler;
     private final CalculateHandler calculateHandler;
     private final OutputHandler outputHandler;

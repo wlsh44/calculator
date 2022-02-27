@@ -82,7 +82,7 @@ class CalculatorTest {
             calculator.calculate(dto);
             String res = calculator.printResult(dto);
 
-            assertThat(res).isEqualTo("result = 1");
+            assertThat(res).isEqualTo("1 + 2 * 3 - 4 / 5 = 1");
         }
 
         @Test
@@ -95,7 +95,7 @@ class CalculatorTest {
             calculator.calculate(dto);
             String res = calculator.printResult(dto);
 
-            assertThat(res).isEqualTo("result = 10");
+            assertThat(res).isEqualTo("2 + 3 * 4 / 2 = 10");
         }
     }
 
