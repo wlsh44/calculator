@@ -1,4 +1,4 @@
-package Calculator.handler.calculate;
+package Calculator.util;
 
 import static Calculator.operator.Operator.*;
 

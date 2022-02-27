@@ -5,8 +5,8 @@ import Calculator.operator.Operator;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-import static Calculator.handler.calculate.CalculateUtil.isDigit;
-import static Calculator.handler.calculate.CalculateUtil.isOperator;
+import static Calculator.util.CalculateUtil.isDigit;
+import static Calculator.util.CalculateUtil.isOperator;
 
 public class DequeExpressionIterator implements ExpressionIterator {
 
