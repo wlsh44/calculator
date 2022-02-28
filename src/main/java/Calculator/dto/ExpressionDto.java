@@ -2,7 +2,7 @@ package Calculator.dto;
 
 public class ExpressionDto {
 
-    private String expression;
+    private final String expression;
 
     public ExpressionDto(String expression) {
         this.expression = expression;
