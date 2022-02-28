@@ -7,12 +7,13 @@ import Calculator.handler.IO.SystemOutputHandler;
 import Calculator.handler.calculate.ArithmeticCalculateHandler;
 import Calculator.handler.calculate.CalculateHandler;
 import Calculator.handler.calculate.DequeExpressionIterator;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.io.*;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -44,70 +45,60 @@ class CalculatorTest {
         }
     }
 
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @Nested
     @DisplayName("calculate 테스트")
     class TestB {
 
-        @Test
-        @DisplayName("1 + 2 * 3 - 4 / 5 = 1")
-        void calculateTest1() {
-            String input = "1 + 2 * 3 - 4 / 5";
-            inputHandler.setScanner(input);
-
-            ExpressionDto dto = calculator.inputExpression();
-            ResultDto calculate = calculator.calculate(dto);
-
-            assertThat(calculate.getResult()).isEqualTo(1);
+        private Stream<Arguments> provideCalculateTest() {
+            return Stream.of(
+                    Arguments.of("1 + 2 * 3 - 4 / 5", 1),
+                    Arguments.of("2 + 3 * 4 / 2", 10)
+            );
         }
 
-        @Test
-        @DisplayName("2 + 3 * 4 / 2 = 10")
-        void calculateTest2() {
-            String input = "2 + 3 * 4 / 2";
+        @ParameterizedTest(name = "{index} => {0} = {1}")
+        @MethodSource("provideCalculateTest")
+        void calculateTest1(String input, int expected) {
             inputHandler.setScanner(input);
 
             ExpressionDto dto = calculator.inputExpression();
             ResultDto calculate = calculator.calculate(dto);
 
-            assertThat(calculate.getResult()).isEqualTo(10);
+            assertThat(calculate.getResult()).isEqualTo(expected);
         }
     }
 
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @Nested
     @DisplayName("output 테스트")
     class TestC {
 
-        private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        private ByteArrayOutputStream outputStream;
 
         @BeforeEach
         public void setUp() {
+            outputStream = new ByteArrayOutputStream();
             System.setOut(new PrintStream(outputStream));
         }
 
-        @Test
-        @DisplayName("1 + 2 * 3 - 4 / 5 = 1 결과 출력")
-        void outputTest1() {
-            String input = "1 + 2 * 3 - 4 / 5";
-            inputHandler.setScanner(input);
-
-            ExpressionDto dto = calculator.inputExpression();
-            ResultDto resultDto = calculator.calculate(dto);
-            calculator.printResult(resultDto);
-
-            assertThat(outputStream.toString().trim()).isEqualTo("1 + 2 * 3 - 4 / 5 = 1");
+        private Stream<Arguments> provideOutputTest() {
+            return Stream.of(
+                    Arguments.of("1 + 2 * 3 - 4 / 5", "1 + 2 * 3 - 4 / 5 = 1"),
+                    Arguments.of("2 + 3 * 4 / 2", "2 + 3 * 4 / 2 = 10")
+            );
         }
 
-        @Test
-        @DisplayName("2 + 3 * 4 / 2 = 10 결과 출력")
-        void outputTest2() {
-            String input = "2 + 3 * 4 / 2";
+        @ParameterizedTest(name = "{index} => {1}")
+        @MethodSource("provideOutputTest")
+        void outputTest(String input, String expected) {
             inputHandler.setScanner(input);
 
             ExpressionDto dto = calculator.inputExpression();
             ResultDto resultDto = calculator.calculate(dto);
             calculator.printResult(resultDto);
 
-            assertThat(outputStream.toString().trim()).isEqualTo("2 + 3 * 4 / 2 = 10");
+            assertThat(outputStream.toString().trim()).isEqualTo(expected);
         }
     }
 }
