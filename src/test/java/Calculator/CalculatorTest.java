@@ -1,6 +1,7 @@
 package Calculator;
 
-import Calculator.dto.CalculatorDto;
+import Calculator.dto.ExpressionDto;
+import Calculator.dto.ResultDto;
 import Calculator.handler.IO.InputHandler;
 import Calculator.handler.IO.OutputHandler;
 import Calculator.handler.IO.SystemInputHandler;
@@ -40,7 +41,7 @@ class CalculatorTest {
             String input = "1 + 2 - 3 / 4 * 5";
             initCalculator(input);
 
-            CalculatorDto dto = calculator.inputExpression();
+            ExpressionDto dto = calculator.inputExpression();
 
             assertThat(dto.getExpression()).isEqualTo("1 + 2 - 3 / 4 * 5");
         }
@@ -56,10 +57,10 @@ class CalculatorTest {
             String input = "1 + 2 * 3 - 4 / 5";
             initCalculator(input);
 
-            CalculatorDto dto = calculator.inputExpression();
-            int res = calculator.calculate(dto);
+            ExpressionDto dto = calculator.inputExpression();
+            ResultDto calculate = calculator.calculate(dto);
 
-            assertThat(res).isEqualTo(1);
+            assertThat(calculate.getResult()).isEqualTo(1);
         }
 
         @Test
@@ -68,10 +69,10 @@ class CalculatorTest {
             String input = "2 + 3 * 4 / 2";
             initCalculator(input);
 
-            CalculatorDto dto = calculator.inputExpression();
-            int res = calculator.calculate(dto);
+            ExpressionDto dto = calculator.inputExpression();
+            ResultDto calculate = calculator.calculate(dto);
 
-            assertThat(res).isEqualTo(10);
+            assertThat(calculate.getResult()).isEqualTo(10);
         }
     }
 
@@ -92,9 +93,9 @@ class CalculatorTest {
             String input = "1 + 2 * 3 - 4 / 5";
             initCalculator(input);
 
-            CalculatorDto dto = calculator.inputExpression();
-            calculator.calculate(dto);
-            calculator.printResult(dto);
+            ExpressionDto dto = calculator.inputExpression();
+            ResultDto resultDto = calculator.calculate(dto);
+            calculator.printResult(resultDto);
 
             assertThat(outputStream.toString().trim()).isEqualTo("1 + 2 * 3 - 4 / 5 = 1");
         }
@@ -105,9 +106,9 @@ class CalculatorTest {
             String input = "2 + 3 * 4 / 2";
             initCalculator(input);
 
-            CalculatorDto dto = calculator.inputExpression();
-            calculator.calculate(dto);
-            calculator.printResult(dto);
+            ExpressionDto dto = calculator.inputExpression();
+            ResultDto resultDto = calculator.calculate(dto);
+            calculator.printResult(resultDto);
 
             assertThat(outputStream.toString().trim()).isEqualTo("2 + 3 * 4 / 2 = 10");
         }

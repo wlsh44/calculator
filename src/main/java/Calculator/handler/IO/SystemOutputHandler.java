@@ -1,11 +1,11 @@
 package Calculator.handler.IO;
 
-import Calculator.dto.CalculatorDto;
+import Calculator.dto.ResultDto;
 
 public class SystemOutputHandler implements OutputHandler {
 
     @Override
-    public void printResult(CalculatorDto dto) {
+    public void printResult(ResultDto dto) {
         String res = dto.getExpression() + " = " + dto.getResult();
 
         System.out.println(res);

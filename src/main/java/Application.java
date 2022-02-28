@@ -1,5 +1,6 @@
 import Calculator.*;
-import Calculator.dto.CalculatorDto;
+import Calculator.dto.ExpressionDto;
+import Calculator.dto.ResultDto;
 import Calculator.handler.IO.InputHandler;
 import Calculator.handler.IO.OutputHandler;
 import Calculator.handler.IO.SystemInputHandler;
@@ -15,8 +16,8 @@ public class Application {
         OutputHandler outputHandler = new SystemOutputHandler();
         Calculator calculator = new Calculator(inputHandler, outputHandler, calculateHandler);
 
-        CalculatorDto dto = calculator.inputExpression();
-        calculator.calculate(dto);
-        calculator.printResult(dto);
+        ExpressionDto expressionDto = calculator.inputExpression();
+        ResultDto resultDto = calculator.calculate(expressionDto);
+        calculator.printResult(resultDto);
     }
 }

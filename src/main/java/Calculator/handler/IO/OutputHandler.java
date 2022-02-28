@@ -1,8 +1,8 @@
 package Calculator.handler.IO;
 
-import Calculator.dto.CalculatorDto;
+import Calculator.dto.ResultDto;
 
 public interface OutputHandler {
 
-    void printResult(CalculatorDto dto);
+    void printResult(ResultDto dto);
 }
