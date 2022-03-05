@@ -1,7 +1,12 @@
 package Calculator.handler.calculate;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,43 +14,25 @@ public class CalculateHandlerTest {
 
     private final CalculateHandler calculateHandler = new ArithmeticCalculateHandler(new DequeExpressionIterator());
 
-    @Test
-    @DisplayName("1 + 2 * 3 - 4 / 5 = 1")
-    void calculate_test1() {
-        String expression = "1 + 2 * 3 - 4 / 5";
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    @Nested
+    class CalculateTest {
+        private Stream<Arguments> provideCalculateTest() {
+            return Stream.of(
+                    Arguments.of("1 + 2 * 3 - 4 / 5", 1),
+                    Arguments.of("2 + 3 * 4 / 2", 10),
+                    Arguments.of("1 + 0 - 10 * 5 / 9", -5),
+                    Arguments.of("10 + 20 * 30 - 40 / 10", 86),
+                    Arguments.of("1", 1)
+            );
+        }
 
-        int res = calculateHandler.calculate(expression);
+        @ParameterizedTest(name = "{index} => {0} = {1}")
+        @MethodSource("provideCalculateTest")
+        void calculate_test(String expression, int expected) {
+            int res = calculateHandler.calculate(expression);
 
-        assertThat(res).isEqualTo(1);
-    }
-
-    @Test
-    @DisplayName("2 + 3 * 4 / 2 = 10")
-    void calculate_test2() {
-        String expression = "2 + 3 * 4 / 2";
-
-        int res = calculateHandler.calculate(expression);
-
-        assertThat(res).isEqualTo(10);
-    }
-
-    @Test
-    @DisplayName("1 + 0 - 10 * 5 / 9 = -5")
-    void calculate_test3() {
-        String expression = "1 + 0 - 10 * 5 / 9";
-
-        int res = calculateHandler.calculate(expression);
-
-        assertThat(res).isEqualTo(-5);
-    }
-
-    @Test
-    @DisplayName("10 + 20 * 30 - 40 / 10 = 86")
-    void calculate_test4() {
-        String expression = "10 + 20 * 30 - 40 / 10";
-
-        int res = calculateHandler.calculate(expression);
-
-        assertThat(res).isEqualTo(86);
+            assertThat(res).isEqualTo(expected);
+        }
     }
 }

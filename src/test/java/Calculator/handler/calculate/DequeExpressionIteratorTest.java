@@ -3,6 +3,12 @@ package Calculator.handler.calculate;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -50,27 +56,20 @@ class DequeExpressionIteratorTest {
         }
     }
 
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @Nested
     @DisplayName("expression 파싱 테스트")
     class TestB {
-
-        @Test
-        @DisplayName("expression 파싱1")
-        void splitExpressionTest1() {
-            String expression = "1 + 2 - 3 / 4 * 5";
-            String expected = "[1, 2, 3, 4, 5]\n[PLUS, MINUS, DIVIDE, MULTIPLY]";
-
-            String res = iterator.splitExpression(expression);
-
-            assertThat(res).isEqualTo(expected);
+        private Stream<Arguments> provideSplitExpression() {
+            return Stream.of(
+                    Arguments.of("1 + 0 - 10 * 5 / 9", "[1, 0, 10, 5, 9]\n[PLUS, MINUS, MULTIPLY, DIVIDE]"),
+                    Arguments.of("1 + 2 - 3 / 4 * 5", "[1, 2, 3, 4, 5]\n[PLUS, MINUS, DIVIDE, MULTIPLY]")
+            );
         }
 
-        @Test
-        @DisplayName("expression 파싱2")
-        void splitExpressionTest2() {
-            String expression = "1 + 0 - 10 * 5 / 9";
-            String expected = "[1, 0, 10, 5, 9]\n[PLUS, MINUS, MULTIPLY, DIVIDE]";
-
+        @ParameterizedTest(name = "{index} => {0} = {1}")
+        @MethodSource("provideSplitExpression")
+        void splitExpressionTest(String expression, String expected) {
             String res = iterator.splitExpression(expression);
 
             assertThat(res).isEqualTo(expected);
