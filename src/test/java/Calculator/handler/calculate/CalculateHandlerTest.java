@@ -44,9 +44,7 @@ public class CalculateHandlerTest {
         private Stream<Arguments> provideCalculateTest() {
             return Stream.of(
                     Arguments.of("1 + 2 * 3 - 4 / 2", new CalculateException("나누어지지 않는 값")),
-                    Arguments.of("2 + 3 * 4 / 0", new CalculateException("나누어지지 않는 값")),
-                    Arguments.of("2147483647 + 1", new CalculateException("오버플로우")),
-                    Arguments.of("-2147483648 - 1", new CalculateException("언더플로우"))
+                    Arguments.of("2 + 3 * 4 / 0", new CalculateException("나누어지지 않는 값"))
             );
         }
 
