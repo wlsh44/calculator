@@ -32,7 +32,7 @@ public class ArithmeticCalculateHandler implements CalculateHandler {
     private boolean isExceptionCase(int leftNum, int rightNum) {
         if (rightNum == 0) {
             return true;
-        } else if (leftNum / rightNum != 0) {
+        } else if (leftNum % rightNum != 0) {
             return true;
         }
         return false;
