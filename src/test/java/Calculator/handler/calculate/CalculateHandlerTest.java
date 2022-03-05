@@ -29,7 +29,7 @@ public class CalculateHandlerTest {
 
         @ParameterizedTest(name = "{index} => {0} = {1}")
         @MethodSource("provideCalculateTest")
-        void calculate_test(String expression, int expected) {
+        void calculateTest(String expression, int expected) {
             int res = calculateHandler.calculate(expression);
 
             assertThat(res).isEqualTo(expected);
