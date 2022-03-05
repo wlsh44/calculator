@@ -1,6 +1,8 @@
 package Calculator;
 
+import Calculator.dto.InvalidResultDto;
 import Calculator.dto.ResultDto;
+import Calculator.dto.ValidResultDto;
 import Calculator.dto.ExpressionDto;
 import Calculator.handler.IO.InputHandler;
 import Calculator.handler.IO.OutputHandler;
@@ -31,12 +33,11 @@ public class Calculator {
     public ResultDto calculate(ExpressionDto dto) {
         try {
             int result = calculateHandler.calculate(dto.getExpression());
-            ResultDto resultDto = new ResultDto(dto.getExpression(), result);
+            ValidResultDto validResultDto = new ValidResultDto(dto.getExpression(), result);
 
-            return resultDto;
+            return validResultDto;
         } catch (CalculateException | InvalidExpressionException e) {
-            System.out.println(e.getMessage());
+            return new InvalidResultDto(e.getMessage());
         }
-        return null;
     }
 }

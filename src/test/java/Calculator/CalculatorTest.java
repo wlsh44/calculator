@@ -2,6 +2,7 @@ package Calculator;
 
 import Calculator.dto.ExpressionDto;
 import Calculator.dto.ResultDto;
+import Calculator.dto.ValidResultDto;
 import Calculator.handler.IO.OutputHandler;
 import Calculator.handler.IO.SystemOutputHandler;
 import Calculator.handler.calculate.ArithmeticCalculateHandler;
@@ -59,13 +60,14 @@ class CalculatorTest {
 
         @ParameterizedTest(name = "{index} => {0} = {1}")
         @MethodSource("provideCalculateTest")
-        void calculateTest1(String input, int expected) {
+        void calculateTest1(String input, int result) {
             inputHandler.setScanner(input);
+            ResultDto expected = new ValidResultDto(input, result);
 
             ExpressionDto dto = calculator.inputExpression();
-            ResultDto calculate = calculator.calculate(dto);
+            ResultDto res = calculator.calculate(dto);
 
-            assertThat(calculate.getResult()).isEqualTo(expected);
+            assertThat(res).isEqualTo(expected);
         }
     }
 
@@ -95,8 +97,8 @@ class CalculatorTest {
             inputHandler.setScanner(input);
 
             ExpressionDto dto = calculator.inputExpression();
-            ResultDto resultDto = calculator.calculate(dto);
-            calculator.printResult(resultDto);
+            ResultDto validResultDto = calculator.calculate(dto);
+            calculator.printResult(validResultDto);
 
             assertThat(outputStream.toString().trim()).isEqualTo(expected);
         }
