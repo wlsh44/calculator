@@ -1,5 +1,6 @@
 package Calculator.handler.calculate;
 
+import exception.CalculateException;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,6 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculateHandlerTest {
 
@@ -33,6 +35,27 @@ public class CalculateHandlerTest {
             int res = calculateHandler.calculate(expression);
 
             assertThat(res).isEqualTo(expected);
+        }
+    }
+
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    @Nested
+    class ExceptionTest {
+        private Stream<Arguments> provideCalculateTest() {
+            return Stream.of(
+                    Arguments.of("1 + 2 * 3 - 4 / 2", new CalculateException("나누어지지 않는 값")),
+                    Arguments.of("2 + 3 * 4 / 0", new CalculateException("나누어지지 않는 값")),
+                    Arguments.of("2147483647 + 1", new CalculateException("오버플로우")),
+                    Arguments.of("-2147483648 - 1", new CalculateException("언더플로우"))
+            );
+        }
+
+        @ParameterizedTest(name = "{index} => {0} = {1}")
+        @MethodSource("provideCalculateTest")
+        void calculateTest(String expression, Exception expected) {
+            Exception exception = assertThrows(CalculateException.class, () -> calculateHandler.calculate(expression));
+
+            assertThat(exception.getMessage()).isEqualTo(expected.getMessage());
         }
     }
 }
