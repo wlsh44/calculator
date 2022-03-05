@@ -1,5 +1,6 @@
 package Calculator.handler.calculate;
 
+import exception.InvalidExpressionException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -97,14 +98,15 @@ class DequeExpressionIteratorTest {
         private Stream<Arguments> provideInvalidSplitExpression() {
             return Stream.of(
                     Arguments.of(null, new NullPointerException("null 값 입력")),
-                    Arguments.of("1 + 1 1 - 2 / 4", new IllegalArgumentException("올바르지 않은 수식")),
-                    Arguments.of("1+ 2 - 3", new IllegalArgumentException("올바르지 않은 수식")),
-                    Arguments.of("1 +2 - 3", new IllegalArgumentException("올바르지 않은 수식")),
-                    Arguments.of("1a + 2 - 3", new IllegalArgumentException("올바르지 않은 수식")),
-                    Arguments.of("1 + 2a - 3", new IllegalArgumentException("올바르지 않은 수식")),
-                    Arguments.of("1 + 2 - 3 /", new IllegalArgumentException("올바르지 않은 수식")),
-                    Arguments.of("1 Q 2 - 3", new IllegalArgumentException("올바르지 않은 수식")),
-                    Arguments.of("1 + * - 3", new IllegalArgumentException("올바르지 않은 수식"))
+                    Arguments.of(" ", new InvalidExpressionException("올바르지 않은 수식")),
+                    Arguments.of("1 + 1 1 - 2 / 4", new InvalidExpressionException("올바르지 않은 수식")),
+                    Arguments.of("1+ 2 - 3", new InvalidExpressionException("올바르지 않은 수식")),
+                    Arguments.of("1 +2 - 3", new InvalidExpressionException("올바르지 않은 수식")),
+                    Arguments.of("1a + 2 - 3", new InvalidExpressionException("올바르지 않은 수식")),
+                    Arguments.of("1 + 2a - 3", new InvalidExpressionException("올바르지 않은 수식")),
+                    Arguments.of("1 + 2 - 3 /", new InvalidExpressionException("올바르지 않은 수식")),
+                    Arguments.of("1 Q 2 - 3", new InvalidExpressionException("올바르지 않은 수식")),
+                    Arguments.of("1 + * - 3", new InvalidExpressionException("올바르지 않은 수식"))
             );
         }
 
@@ -112,7 +114,7 @@ class DequeExpressionIteratorTest {
         @MethodSource("provideInvalidSplitExpression")
         @DisplayName("올바르지 않은 수식")
         void invalidExpressionTest2(String expression, Exception expected) {
-            Exception exception = assertThrows(IllegalArgumentException.class, () -> iterator.splitExpression(expression));
+            Exception exception = assertThrows(InvalidExpressionException.class, () -> iterator.splitExpression(expression));
 
             assertThat(exception.getMessage()).isEqualTo(expected.getMessage());
         }
