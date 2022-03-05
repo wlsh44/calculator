@@ -5,6 +5,8 @@ import Calculator.dto.ExpressionDto;
 import Calculator.handler.IO.InputHandler;
 import Calculator.handler.IO.OutputHandler;
 import Calculator.handler.calculate.CalculateHandler;
+import exception.CalculateException;
+import exception.InvalidExpressionException;
 
 public class Calculator {
 
@@ -27,9 +29,14 @@ public class Calculator {
     }
 
     public ResultDto calculate(ExpressionDto dto) {
-        int result = calculateHandler.calculate(dto.getExpression());
-        ResultDto resultDto = new ResultDto(dto.getExpression(), result);
+        try {
+            int result = calculateHandler.calculate(dto.getExpression());
+            ResultDto resultDto = new ResultDto(dto.getExpression(), result);
 
-        return resultDto;
+            return resultDto;
+        } catch (CalculateException | InvalidExpressionException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }
