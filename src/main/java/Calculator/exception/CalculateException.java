@@ -1,4 +1,4 @@
-package exception;
+package Calculator.exception;
 
 public class CalculateException extends RuntimeException {
 

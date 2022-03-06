@@ -1,4 +1,4 @@
-package exception;
+package Calculator.exception;
 
 public class InvalidExpressionException extends RuntimeException {
     private final static String DEFAULT_MESSAGE = "올바르지 않은 수식";

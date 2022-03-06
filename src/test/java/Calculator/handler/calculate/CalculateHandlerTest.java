@@ -1,6 +1,6 @@
 package Calculator.handler.calculate;
 
-import exception.CalculateException;
+import Calculator.exception.CalculateException;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;

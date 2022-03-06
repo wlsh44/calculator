@@ -1,6 +1,6 @@
 package Calculator.handler.calculate;
 
-import exception.InvalidExpressionException;
+import Calculator.exception.InvalidExpressionException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
