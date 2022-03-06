@@ -1,6 +1,7 @@
 package Calculator.handler.calculate;
 
 import Calculator.exception.CalculateException;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,6 +19,7 @@ public class CalculateHandlerTest {
 
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @Nested
+    @DisplayName("계산 테스트")
     class CalculateTest {
         private Stream<Arguments> provideCalculateTest() {
             return Stream.of(
@@ -40,6 +42,7 @@ public class CalculateHandlerTest {
 
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @Nested
+    @DisplayName("예외 테스트")
     class ExceptionTest {
         private Stream<Arguments> provideCalculateTest() {
             return Stream.of(
