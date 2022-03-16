@@ -1,7 +1,9 @@
 package Calculator.handler.calculate;
 
-import Calculator.operator.Operator;
 import Calculator.exception.CalculateException;
+import Calculator.operator.Operator;
+
+import static Calculator.operator.Operator.DIVIDE;
 
 public class ArithmeticCalculateHandler implements CalculateHandler {
 
@@ -19,7 +21,7 @@ public class ArithmeticCalculateHandler implements CalculateHandler {
             Operator operator = iterator.popOperatorFront();
             int leftNum = iterator.popNumFront();
             int rightNum = iterator.popNumFront();
-            if (operator.equals(Operator.DIVIDE) && isExceptionCase(leftNum, rightNum)) {
+            if (DIVIDE.equals(operator) && isExceptionCase(leftNum, rightNum)) {
                 throw new CalculateException("나누어지지 않는 값");
             }
             int res = operator.operate(leftNum, rightNum);
@@ -30,11 +32,6 @@ public class ArithmeticCalculateHandler implements CalculateHandler {
     }
 
     private boolean isExceptionCase(int leftNum, int rightNum) {
-        if (rightNum == 0) {
-            return true;
-        } else if (leftNum % rightNum != 0) {
-            return true;
-        }
-        return false;
+        return (rightNum == 0) || (leftNum % rightNum != 0);
     }
 }

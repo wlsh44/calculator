@@ -1,5 +1,9 @@
 package Calculator.util;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import static Calculator.operator.Operator.*;
 
 public class CalculateUtil {
@@ -14,7 +18,7 @@ public class CalculateUtil {
     }
 
     public static boolean isOperator(String s) {
-        return s.equals(PLUS.symbol()) || s.equals(MINUS.symbol()) ||
-                s.equals(MULTIPLY.symbol()) || s.equals(DIVIDE.symbol());
+        Set<String> symbolSet = new HashSet<>(Arrays.asList(PLUS.symbol(), MINUS.symbol(), MULTIPLY.symbol(), DIVIDE.symbol()));
+        return symbolSet.contains(s);
     }
 }
